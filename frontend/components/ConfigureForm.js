@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Input,
@@ -8,41 +8,47 @@ import {
   Text,
 } from "@airtable/blocks/ui";
 
-import { blockBtnStyles } from "../styles";
+import { blockBtnStyles, iconStyles, urlBlockStyles } from "../styles";
 
 const ConfigureForm = ({
-  tablePicked,
-  onSend,
-  onChangeTable,
-  url,
-  configUrl,
-  onUrlChange,
+  handleSend,
+  tableParam,
+  handleTableChange,
+  urlParam,
+  handleUrlChange,
   isLoading,
 }) => {
-  const isShowUrlInputField = configUrl && url === null;
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    if (urlParam) setUrl(urlParam);
+  }, [urlParam]);
+
+  const [table, setTable] = useState(null);
+
+  useEffect(() => {
+    if (tableParam) setTable(tableParam);
+  }, [tableParam]);
+
+  const [isShowUrlInput, setIsShowUrlInput] = useState(false);
+
+  useEffect(() => {
+    setIsShowUrlInput(urlParam ? false : true);
+  }, [urlParam]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSend();
+    handleTableChange && handleTableChange(table);
+    handleUrlChange && handleUrlChange(url.trim());
+
+    handleSend(url, table);
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        {isShowUrlInputField ? (
-          <>
-            <Label display="block">URL</Label>
-            <div style={{ marginBottom: "20px", display: "flex" }}>
-              <Icon
-                name="edit"
-                marginRight="5px"
-                onClick={() => onUrlChange("")}
-              />
-              <Text id="url">{configUrl}</Text>
-            </div>
-          </>
-        ) : (
+        {isShowUrlInput ? (
           <>
             <Label htmlFor="url" display="block">
               Enter the url
@@ -50,24 +56,37 @@ const ConfigureForm = ({
             <Input
               id="url"
               value={url}
-              onChange={(e) => onUrlChange(e.target.value)}
+              onChange={(e) => setUrl(e.target.value)}
               marginBottom="20px"
-              maxWidth="300px"
+              maxWidth="400px"
               required
             />
+          </>
+        ) : (
+          <>
+            <Label display="block">URL</Label>
+            <div style={urlBlockStyles}>
+              <Icon
+                name="edit"
+                marginRight="5px"
+                onClick={() => setIsShowUrlInput(true)}
+                style={iconStyles}
+              />
+              <Text id="url">{url}</Text>
+            </div>
           </>
         )}
 
         <Label htmlFor="table" display="block">
           Choose the table
         </Label>
+
         <TablePicker
           id="table"
-          table={tablePicked}
-          onChange={(newTable) => onChangeTable(newTable)}
+          table={table}
+          onChange={(newTable) => setTable(newTable)}
           marginBottom="30px"
-          maxWidth="300px"
-          required
+          maxWidth="400px"
         />
 
         <Button

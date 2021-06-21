@@ -1,8 +1,10 @@
+//fetch url with options
 const getOptions = (record) => ({
   method: "POST",
   body: JSON.stringify(record),
 });
 
+//send record
 export const sendRecord = async (url, record) => {
   try {
     const res = await fetch(url, getOptions(record));

@@ -1,3 +1,5 @@
+
+//this is just list of records used in RecordsForm.js
 import { useRecords, Box, RecordCardList } from "@airtable/blocks/ui";
 import React from "react";
 
