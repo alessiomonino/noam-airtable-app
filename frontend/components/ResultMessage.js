@@ -2,6 +2,7 @@ import React from "react";
 
 import { Heading, Button, Box } from "@airtable/blocks/ui";
 
+//if error shows error message, if not success
 const ResultMessage = ({ error, onRetry, record }) => {
   return (
     <>

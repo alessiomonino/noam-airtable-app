@@ -6,15 +6,23 @@ import RecordsList from "./RecordsList";
 import { blockBtnStyles, recordStyles } from "../styles";
 
 const RecordsForm = ({
-  recordPicked,
   tablePicked,
   onChangeRecordPicked,
   onChangeParams,
-  onSend,
+  handleSend,
   isLoading,
 }) => {
+  const [record, setRecord] = useState(null);
+
+  // on every choice of record update the global record
+  //if record picked ok, if not creates a new table you can pisk new record from
+  useEffect(() => {
+    if (record) onChangeRecordPicked(record);
+  }, [record, onChangeRecordPicked]);
+
   const [recordsInTable, setRecordsInTable] = useState(null);
 
+  // if the table passed and has records, set the records list
   useEffect(() => {
     const queryResult = tablePicked ? tablePicked.selectRecords() : null;
     if (queryResult) {
@@ -24,7 +32,7 @@ const RecordsForm = ({
 
   return (
     <>
-      {recordPicked ? (
+      {record ? (
         <>
           <Heading variant="caps" marginBottom="20px">
             You chose the record:
@@ -33,7 +41,7 @@ const RecordsForm = ({
             size="small"
             icon="edit"
             marginBottom="5px"
-            onClick={() => onChangeRecordPicked(null)}
+            onClick={() => setRecord(null)}
           >
             Choose another record
           </Button>
@@ -45,7 +53,7 @@ const RecordsForm = ({
             marginBottom="20px"
           >
             <RecordCard
-              record={recordPicked}
+              record={record}
               onClick={() => null}
               marginBottom="20px"
               style={recordStyles}
@@ -53,10 +61,10 @@ const RecordsForm = ({
           </Box>
           <Button
             type="submit"
-            disabled={!recordPicked || isLoading}
+            disabled={!record || isLoading}
             style={blockBtnStyles}
             variant="primary"
-            onClick={onSend}
+            onClick={() => handleSend()}
             width="30%"
           >
             {isLoading ? "Sending" : "Send the record"}
@@ -75,10 +83,7 @@ const RecordsForm = ({
           >
             Change Table or Url
           </Button>
-          <RecordsList
-            queryResult={recordsInTable}
-            onRecordClick={onChangeRecordPicked}
-          />
+          <RecordsList queryResult={recordsInTable} onRecordClick={setRecord} />
         </>
       )}
     </>
