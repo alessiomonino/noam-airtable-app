@@ -1,7 +1,5 @@
 const NOTIFY_OWNER_URL =
-  "https://hooks.zapier.com/hooks/catch/6204614/o610tej/";
-// "https://hooks.zapier.com/hooks/catch/1156542/b39k94b/";
-// here you paste the link to the webhook, where you want the notifications to come
+  "https://hooks.zapier.com/hooks/catch/1156542/b39k94b/";
 
 const getOptions = (body) => ({
   method: "POST",
