@@ -23,9 +23,10 @@ const ResultMessage = ({ error, onRetry, record }) => {
       ) : (
         <>
           <Heading variant="caps" size="small">
-            {record
-              ? `✅ The Record {${record.name}} with the ID {${record.id}} was sent successfully`
-              : "Your record sent successfully"}
+            Your record:
+            {record &&
+              JSON.stringify({ name: record.name, id: record.id })}{" "}
+            was sent successfully!
           </Heading>
           <Button onClick={() => onRetry()} variant="primary" icon="redo">
             Send another record
