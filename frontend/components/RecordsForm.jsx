@@ -73,7 +73,7 @@ const RecordsForm = ({
       ) : (
         <>
           <Heading variant="caps" marginBottom="20px">
-            Please choose the record:
+            Please select the record:
           </Heading>
           <Button
             size="small"

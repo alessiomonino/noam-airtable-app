@@ -26,3 +26,23 @@ export const urlBlockStyles = {
   display: "flex",
   alignItems: "center",
 };
+
+export const logoStyles = {
+  position: "absolute",
+  left: "20px",
+  bottom: "15px",
+};
+
+export const counterStyles = {
+  position: "absolute",
+  right: "20px",
+  bottom: "15px",
+};
+
+export const counterStylesSpan = {
+  fontWeight: "700",
+};
+
+export const limitStyles = {
+  textAlign: "center",
+};

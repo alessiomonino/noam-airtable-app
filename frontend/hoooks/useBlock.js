@@ -3,6 +3,7 @@ import {
   useGlobalConfig,
   useRecordActionData,
   useRecordById,
+  useSession,
 } from "@airtable/blocks/ui";
 
 //useBlock is used to access all the variables in the base. globalConfig with url is not stored locally in app but in the Airtable logic. Extrapolated from hook
@@ -14,6 +15,9 @@ const useBlock = () => {
   // ------ Configure config methods -------------------------
   //used for url
   const globalConfig = useGlobalConfig();
+
+  // ------ Configure session  ---------------
+  const session = useSession();
 
   //------- Configure ActionData if exists ---------
   // used to get automatically get info about the record if they are run from the button and not by just running app
@@ -33,7 +37,7 @@ const useBlock = () => {
   const record = useRecordById(table, recordId);
   // ----------------------------------------------
 
-  return { base, table, record, globalConfig };
+  return { base, table, record, session, globalConfig };
 };
 
 export default useBlock;

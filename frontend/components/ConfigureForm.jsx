@@ -51,7 +51,7 @@ const ConfigureForm = ({
         {isShowUrlInput ? (
           <>
             <Label htmlFor="url" display="block">
-              Enter the url
+              Enter the Webhook URL
             </Label>
             <Input
               id="url"
@@ -64,7 +64,7 @@ const ConfigureForm = ({
           </>
         ) : (
           <>
-            <Label display="block">URL</Label>
+            <Label display="block">Webhook URL</Label>
             <div style={urlBlockStyles}>
               <Icon
                 name="edit"
@@ -78,7 +78,7 @@ const ConfigureForm = ({
         )}
 
         <Label htmlFor="table" display="block">
-          Choose the table
+          Select the table
         </Label>
 
         <TablePicker

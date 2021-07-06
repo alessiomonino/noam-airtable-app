@@ -1,4 +1,3 @@
-
 //this is just list of records used in RecordsForm.js
 import { useRecords, Box, RecordCardList } from "@airtable/blocks/ui";
 import React from "react";
@@ -10,7 +9,7 @@ const RecordsList = ({ queryResult, onRecordClick }) => {
     <>
       {records && (
         <Box
-          height="70vh"
+          height="60vh"
           border="thick"
           backgroundColor="lightGray1"
           marginBottom="20px"
