@@ -9,7 +9,7 @@ const Logo = () => {
         width="32"
         height="32"
         // below you are able to pass the url to logo
-        src="https://image.flaticon.com/icons/png/512/2362/2362402.png"
+        src="http://pngimg.com/uploads/dog/dog_PNG50348.png"
         alt="App Logo"
       />
     </div>
