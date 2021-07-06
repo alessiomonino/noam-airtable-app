@@ -70,7 +70,7 @@ function SendToWebhook() {
   }, [table, tablePicked, record]);
 
   // the sum of the requests made by user
-  const [requestsNumber, setRequestsNumber] = useState(98);
+  const [requestsNumber, setRequestsNumber] = useState(0);
 
   useEffect(() => {
     // recieve the number of requests made from globalConfig
