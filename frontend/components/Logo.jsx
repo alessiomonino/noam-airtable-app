@@ -9,7 +9,7 @@ const Logo = () => {
         width="32"
         height="32"
         // below you are able to pass the url to logo
-        src="http://pngimg.com/uploads/dog/dog_PNG50348.png"
+        src="https://res.cloudinary.com/noamsay/image/upload/v1625678672/favicon-noamsay.png"
         alt="App Logo"
       />
     </div>
